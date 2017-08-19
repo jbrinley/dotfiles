@@ -12,3 +12,17 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+.idea
+.svn
+
+
+*.local
+*.local.php
+*.local.sh
+
+node_modules
+
+wp-tests-config.php
+
+

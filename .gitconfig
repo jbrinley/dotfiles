@@ -3,6 +3,8 @@
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
+	lol = log --graph --decorate --pretty=format:\"%h %ad | %s%d [%an]\" --date=short --abbrev-commit
+
 	# View the current working tree status using the short format
 	s = status -s
 
@@ -15,6 +17,18 @@
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
 
+	pr = pull --rebase
+
+	subup = submodule update --init --recursive
+
+	unadd = reset HEAD
+
+	incoming = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' ..@{u})
+
+	outgoing = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' @{u}..)
+
+	outgoing-bare = !(git fetch --quiet && git log --pretty=format:'%h - %an - %d %s - %ar' @{u}..)
+
 	# Clone a repository including all submodules
 	c = clone --recursive
 
@@ -23,6 +37,8 @@
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+	co = checkout
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
@@ -84,6 +100,10 @@
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
+[branch]
+
+	autosetupmerge = true
+
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
@@ -131,7 +151,17 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	#gpgsign = true
+
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
+	trustctime = false
+	#gitproxy = git-proxy
+
+[credential]
+
+	helper = osxkeychain
 
 [diff]
 
@@ -158,9 +188,13 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+
+[socks]
+
+	proxy = localhost:1080
 
 # URL shorthands
 
@@ -183,3 +217,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Jonathan Brinley
+	email = jbrinley@flightless.us

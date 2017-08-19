@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+srcdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd );
+cd ${srcdir}
 
 git pull origin master;
 
 function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	include=( ".vim" ".aliases" ".bash_profile" ".bash_prompt" ".bashrc" ".curlrc" ".editorconfig" ".exports" ".functions" ".gdbinit" ".gitattributes" ".gitconfig" ".gitignore" ".gvimrc" ".hgignore" ".hushlogin" ".inputrc" ".path" ".screenrc" ".tmux.conf" ".vimrc" ".wgetrc" "brew.sh" );
+
+	target=${HOME};
+
+	for file in ${include[@]}; do
+		rm -rf ${target}/${file}
+		ln -s ${srcdir}/${file} ${target}/${file};
+	done;
+
+	source ${target}/.bash_profile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

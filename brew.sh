@@ -41,17 +41,19 @@ brew install vim --with-override-system-vi
 brew install grep
 brew install openssh
 brew install screen
-brew install homebrew/php/php56 --with-gmp
+
+brew tap 'homebrew/homebrew-php'
+brew install php71
 
 # Install font tools.
-brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
-brew install woff2
+#brew tap bramstein/webfonttools
+#brew install sfnt2woff
+#brew install sfnt2woff-zopfli
+#brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
-brew install aircrack-ng
-brew install bfg
+#brew install aircrack-ng
+#brew install bfg
 brew install binutils
 brew install binwalk
 brew install cifer
@@ -80,14 +82,17 @@ brew install ack
 #brew install exiv2
 brew install git
 brew install git-lfs
+brew install hub
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
+brew install mysql
 brew install p7zip
 brew install pigz
 brew install pv
 brew install rename
 brew install ssh-copy-id
+brew install svn
 brew install tree
 brew install vbindiff
 brew install zopfli

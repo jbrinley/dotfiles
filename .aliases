@@ -149,3 +149,12 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# detach with Ctrl+a, d
+alias dockervmssh='screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty'
+
+alias clbin='curl -v -F "clbin=<-" https://clbin.com'
+
+alias flushdns='dscacheutil -flushcache'
+
+alias du='du -chs'
