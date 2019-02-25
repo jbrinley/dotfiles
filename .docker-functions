@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+docker_project_alias()
+{
+    if [[ $1 == "core" ]]; then
+        echo "global";
+    elif [[ $1 == "dw" ]]; then
+        echo "dealerweb";
+    elif [[ $1 == "s1" ]] || [[ $1 == "sq" ]]; then
+        echo "square";
+    elif [[ $1 == "sc" ]] || [[ $1 == "steelcase" ]]; then
+        echo "steelcase-com";
+    elif [[ $1 == "sv" ]] || [[ $1 == "village" ]]; then
+        echo "steelcase-village";
+    elif [[ $1 == "bc" ]]; then
+        echo "bigcommerce";
+    elif [[ $1 == "uch" ]] || [[ $1 == "hastings" ]]; then
+        echo "uchastings";
+    elif [[ $1 == "action" ]]; then
+        echo "action-scheduler"
+    elif [[ $1 == "bamco" ]]; then
+        echo "bamco.com";
+    elif [[ $1 == "" ]]; then
+        echo "global";
+    else
+        echo $1;
+    fi;
+}
+
+dc()
+{
+    project=$(docker_project_alias $1)
+
+    if [[ $project == "global" ]]; then
+        ~/projects/tribe/square/dev/docker/global/start.sh;
+    elif [ -f ~/projects/tribe/$project/dev/docker/start.sh ]; then
+        ~/projects/tribe/$project/dev/docker/start.sh;
+    elif [ -f ~/projects/$project/dev/docker/start.sh ]; then
+        ~/projects/$project/dev/docker/start.sh;
+    fi;
+}
+
+dclog()
+{
+    project=$(docker_project_alias $1)
+
+    if [[ $project == "global" ]]; then
+        ~/projects/tribe/square/dev/docker/global/logs.sh;
+    elif [ -f ~/projects/tribe/$project/dev/docker/logs.sh ]; then
+        ~/projects/tribe/$project/dev/docker/logs.sh;
+    elif [ -f ~/projects/$project/dev/docker/logs.sh ]; then
+        ~/projects/$project/dev/docker/logs.sh;
+    fi;
+}
+
+dcstop()
+{
+    project=$(docker_project_alias $1)
+
+    if [[ $project == "global" ]]; then
+        ~/projects/tribe/square/dev/docker/global/stop.sh;
+    elif [ -f ~/projects/tribe/$project/dev/docker/stop.sh ]; then
+        ~/projects/tribe/$project/dev/docker/stop.sh;
+    elif [ -f ~/projects/$project/dev/docker/stop.sh ]; then
+        ~/projects/$project/dev/docker/stop.sh;
+    fi;
+}
+
+dwp()
+{
+    project=$(docker_project_alias $1); shift;
+
+    if [ -f ~/projects/tribe/$project/dev/docker/wp.sh ]; then
+        ~/projects/tribe/$project/dev/docker/wp.sh "$@";
+    elif [ -f ~/projects/$project/dev/docker/wp.sh ]; then
+        ~/projects//$project/dev/docker/wp.sh "$@";
+    fi;
+}
+
+dbash()
+{
+  docker exec -i -t $1 /bin/bash;
+}
+
+dsh()
+{
+  docker exec -i -t $1 /bin/sh;
+}
+
+ctop()
+{
+  docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest -i;
+}
+
+dsocat()
+{
+  docker run --name socat --rm -d -v /var/run/docker.sock:/var/run/docker.sock -p 2375:2375 bobrik/socat TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock;
+}

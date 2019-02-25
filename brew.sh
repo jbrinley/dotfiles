@@ -43,7 +43,7 @@ brew install openssh
 brew install screen
 
 brew tap 'homebrew/homebrew-php'
-brew install php71
+brew install php71 --with-pear
 
 # Install font tools.
 #brew tap bramstein/webfonttools
@@ -79,8 +79,11 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
+brew install ansible
+brew install autojump
 #brew install exiv2
 brew install git
+brew install git-crypt
 brew install git-lfs
 brew install hub
 brew install imagemagick --with-webp

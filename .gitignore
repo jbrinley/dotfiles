@@ -24,5 +24,7 @@ Thumbs.db
 node_modules
 
 wp-tests-config.php
+.vim/swaps
+.netrwhist
 
 

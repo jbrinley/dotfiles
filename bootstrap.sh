@@ -6,7 +6,7 @@ cd ${srcdir}
 git pull origin master;
 
 function doIt() {
-	include=( ".vim" ".aliases" ".bash_profile" ".bash_prompt" ".bashrc" ".curlrc" ".editorconfig" ".exports" ".functions" ".gdbinit" ".gitattributes" ".gitconfig" ".gitignore" ".gvimrc" ".hgignore" ".hushlogin" ".inputrc" ".path" ".screenrc" ".tmux.conf" ".vimrc" ".wgetrc" "brew.sh" );
+	include=( ".vim" ".aliases" ".bash_profile" ".bash_prompt" ".bashrc" ".curlrc" ".docker-functions" ".editorconfig" ".exports" ".functions" ".gdbinit" ".gitattributes" ".gitconfig" ".gitignore" ".gvimrc" ".hgignore" ".hushlogin" ".inputrc" ".nvm_profile" ".path" ".screenrc" ".tmux.conf" ".vimrc" ".wgetrc" );
 
 	target=${HOME};
 

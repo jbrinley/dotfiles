@@ -176,7 +176,7 @@ function mvim() {
 	else
 		open -a MacVim "$@"
 	fi;
-}
+	}
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location

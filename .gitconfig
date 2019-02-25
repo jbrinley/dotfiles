@@ -1,5 +1,7 @@
 [alias]
 
+	ci = commit
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -28,6 +30,12 @@
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' @{u}..)
 
 	outgoing-bare = !(git fetch --quiet && git log --pretty=format:'%h - %an - %d %s - %ar' @{u}..)
+
+	f = fetch
+
+	fp = fetch --prune
+
+	fpl = !"git fetch --prune; git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
 
 	# Clone a repository including all submodules
 	c = clone --recursive
@@ -176,7 +184,7 @@
 [help]
 
 	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+	autocorrect = 5
 
 [merge]
 
