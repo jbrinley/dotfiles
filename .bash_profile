@@ -57,3 +57,6 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 # The next line enables autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+export CDPATH=:~/projects:~/projects/tribe
+export COMPOSER_MEMORY_LIMIT=-1
+

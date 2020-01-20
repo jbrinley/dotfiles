@@ -20,6 +20,10 @@ docker_project_alias()
         echo "action-scheduler"
     elif [[ $1 == "bamco" ]]; then
         echo "bamco.com";
+    elif [[ $1 == "ll" ]]; then
+        echo "little-league";
+    elif [[ $1 == "wcorl" ]]; then
+        echo "wordcamp/orlando-2019";
     elif [[ $1 == "" ]]; then
         echo "global";
     else
